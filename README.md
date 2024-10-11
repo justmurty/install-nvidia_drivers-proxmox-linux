@@ -21,3 +21,9 @@
    ```bash
    git clone https://github.com/justmurty/proxmox-nvidia-setup.git
    cd proxmox-nvidia-setup
+
+2. Направете скрипта изпълним и го стартирайте:
+
+   ```bash
+   chmod +x install-nvidia-proxmox.sh
+   ./install-nvidia-proxmox.sh
