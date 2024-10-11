@@ -19,7 +19,7 @@
 1. Клонирайте репозитория на вашия Proxmox сървър:
 
    ```bash
-   wget https://github.com/justmurty/proxmox-nvidia-setup/blob/main/install-nvidia-proxmox.sh
+   wget https://raw.githubusercontent.com/justmurty/proxmox-nvidia-setup/refs/heads/main/install-nvidia-proxmox.sh
 
 2. Направете скрипта изпълним и го стартирайте:
 
