@@ -24,5 +24,5 @@
 2. Направете скрипта изпълним и го стартирайте:
 
    ```bash
-   chmod +x install-nvidia-proxmox.sh
-   ./install-nvidia-proxmox.sh
+   chmod +x install-nvidia-drivers.sh
+   ./install-nvidia-drivers.sh
