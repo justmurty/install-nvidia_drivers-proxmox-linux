@@ -16,9 +16,10 @@ confirm() {
 }
 
 # Добавяне на Proxmox no-subscription repository
-if confirm "Добавяне на Proxmox no-subscription repository?"; then
+if confirm "Ако го правите в shell на Proxmox добавете Proxmox no-subscription repository?"; then
     echo "Adding Proxmox no-subscription repository..."
     echo "deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription" > /etc/apt/sources.list.d/pve-enterprise.list
+    apt install -y pve-headers-$(uname -r)
 else
     echo "Пропускане на добавянето на Proxmox no-subscription repository."
 fi
@@ -44,9 +45,9 @@ else
 fi
 
 # Инсталиране на необходимите пакети
-if confirm "Инсталиране на NVIDIA драйвери, dkms и Proxmox headers?"; then
+if confirm "Инсталиране на NVIDIA драйвери, dkms и linux headers?"; then
     echo "Installing NVIDIA drivers, dkms, and Proxmox headers..."
-    apt install -y nvidia-detect nvidia-driver dkms pve-headers
+    apt install -y nvidia-detect nvidia-driver dkms linux-headers-$(uname -r)
 else
     echo "Пропускане на инсталацията на NVIDIA драйвери и зависимости."
 fi
