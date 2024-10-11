@@ -6,11 +6,13 @@
 confirm() {
     read -p "$1 (Y/n): " choice
     choice=${choice:-Y}
-    case "$choice" in 
-        [Yy]* ) return 0 ;;
-        [Nn]* ) return 1 ;;
-        * ) echo "Моля, въведете Y или N." && confirm "$1" ;;
-    esac
+    if [[ "$choice" =~ ^[Yy]$ ]]; then
+        return 0
+    elif [[ "$choice" =~ ^[Nn]$ ]]; then
+        return 1
+    else
+        confirm "$1"
+    fi
 }
 
 # Добавяне на Proxmox no-subscription repository
