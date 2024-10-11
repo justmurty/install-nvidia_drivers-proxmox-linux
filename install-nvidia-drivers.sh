@@ -27,15 +27,26 @@ fi
 # Добавяне на Debian репозиторита
 if confirm "Добавяне на Debian репозиторита?"; then
     echo "Configuring Debian repositories..."
+    
+    # Добавяне на Proxmox GPG ключ
     wget -qO - https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg | gpg --dearmor -o /usr/share/keyrings/proxmox-archive-keyring.gpg
-    cat <<EOF  > /etc/apt/sources.list.d/pve-no-subscription.list
+    
+    # Конфигуриране на Proxmox репозитория
+    cat <<EOF > /etc/apt/sources.list.d/pve-no-subscription.list
 deb [signed-by=/usr/share/keyrings/proxmox-archive-keyring.gpg] http://download.proxmox.com/debian/pve bookworm pve-no-subscription
 EOF
+
+    # Конфигуриране на Debian репозиториите
     cat <<EOF > /etc/apt/sources.list
 deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
 deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
 deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
 EOF
+
+    # Обновяване на списъка с пакети
+    apt update
+
+    echo "Репозиторитата бяха успешно конфигурирани и списъкът с пакети е обновен."
 else
     echo "Пропускане на конфигурацията на Debian репозиторита."
 fi
