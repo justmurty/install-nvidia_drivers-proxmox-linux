@@ -27,6 +27,8 @@ fi
 # Добавяне на Debian репозиторита
 if confirm "Добавяне на Debian репозиторита?"; then
     echo "Configuring Debian repositories..."
+    wget -qO - https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg | gpg --dearmor -o /usr/share/keyrings/proxmox-archive-keyring.gpg
+    deb [signed-by=/usr/share/keyrings/proxmox-archive-keyring.gpg] http://download.proxmox.com/debian/pve bookworm pve-no-subscription
     cat <<EOF > /etc/apt/sources.list
 deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
 deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
@@ -47,7 +49,7 @@ fi
 # Инсталиране на необходимите пакети
 if confirm "Инсталиране на NVIDIA драйвери, dkms и linux headers?"; then
     echo "Installing NVIDIA drivers, dkms, and Proxmox headers..."
-    apt install -y nvidia-detect nvidia-driver dkms build-essential
+    apt install -y nvidia-detect nvidia-driver dkms build-essential linux-headers-$(uname -r)
     dkms autoinstall
 else
     echo "Пропускане на инсталацията на NVIDIA драйвери и зависимости."
