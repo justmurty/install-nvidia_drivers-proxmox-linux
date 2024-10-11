@@ -19,7 +19,7 @@
 1. Изтеглете скрипта:
 
    ```bash
-   wget https://raw.githubusercontent.com/justmurty/proxmox-nvidia-setup/refs/heads/main/install-nvidia-proxmox.sh
+   wget https://raw.githubusercontent.com/justmurty/install-nvidia_drivers-setup/refs/heads/main/install-nvidia-drivers.sh
 
 2. Направете скрипта изпълним и го стартирайте:
 
