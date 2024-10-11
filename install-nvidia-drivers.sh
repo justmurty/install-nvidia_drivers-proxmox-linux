@@ -40,7 +40,7 @@ fi
 # Добавяне на Proxmox no-subscription repository
 if confirm "Ако го правите в shell на Proxmox добавете Proxmox no-subscription repository?"; then
     echo "Adding Proxmox no-subscription repository..."
-    echo "deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription" > /etc/apt/sources.list.d/pve-enterprise.list
+    echo "deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription" > /etc/apt/sources.list.d/pve-no-subscription.list
     apt install -y pve-headers-$(uname -r)
 else
     echo "Пропускане на добавянето на Proxmox no-subscription repository."
