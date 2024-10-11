@@ -28,7 +28,9 @@ fi
 if confirm "Добавяне на Debian репозиторита?"; then
     echo "Configuring Debian repositories..."
     wget -qO - https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg | gpg --dearmor -o /usr/share/keyrings/proxmox-archive-keyring.gpg
-    deb [signed-by=/usr/share/keyrings/proxmox-archive-keyring.gpg] http://download.proxmox.com/debian/pve bookworm pve-no-subscription
+    cat <<EOF  > /etc/apt/sources.list.d/pve-no-subscription.list
+deb [signed-by=/usr/share/keyrings/proxmox-archive-keyring.gpg] http://download.proxmox.com/debian/pve bookworm pve-no-subscription
+EOF
     cat <<EOF > /etc/apt/sources.list
 deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
 deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
