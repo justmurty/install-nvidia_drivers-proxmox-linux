@@ -42,11 +42,6 @@ deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmwar
 deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
 deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
 EOF
-
-    # Обновяване на списъка с пакети
-    apt update
-
-    echo "Репозиторитата бяха успешно конфигурирани и списъкът с пакети е обновен."
 else
     echo "Пропускане на конфигурацията на Debian репозиторита."
 fi
