@@ -16,7 +16,7 @@
 
 ### Как да използвате
 
-1. Клонирайте репозитория на вашия Proxmox сървър:
+1. Изтеглете скрипта:
 
    ```bash
    wget https://raw.githubusercontent.com/justmurty/proxmox-nvidia-setup/refs/heads/main/install-nvidia-proxmox.sh
