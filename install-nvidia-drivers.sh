@@ -15,15 +15,6 @@ confirm() {
     fi
 }
 
-# Добавяне на Proxmox no-subscription repository
-if confirm "Ако го правите в shell на Proxmox добавете Proxmox no-subscription repository?"; then
-    echo "Adding Proxmox no-subscription repository..."
-    echo "deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription" > /etc/apt/sources.list.d/pve-enterprise.list
-    apt install -y pve-headers-$(uname -r)
-else
-    echo "Пропускане на добавянето на Proxmox no-subscription repository."
-fi
-
 # Добавяне на Debian репозиторита
 if confirm "Добавяне на Debian репозиторита?"; then
     echo "Configuring Debian repositories..."
@@ -44,6 +35,15 @@ deb http://security.debian.org/debian-security bookworm-security main contrib no
 EOF
 else
     echo "Пропускане на конфигурацията на Debian репозиторита."
+fi
+
+# Добавяне на Proxmox no-subscription repository
+if confirm "Ако го правите в shell на Proxmox добавете Proxmox no-subscription repository?"; then
+    echo "Adding Proxmox no-subscription repository..."
+    echo "deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription" > /etc/apt/sources.list.d/pve-enterprise.list
+    apt install -y pve-headers-$(uname -r)
+else
+    echo "Пропускане на добавянето на Proxmox no-subscription repository."
 fi
 
 # Актуализиране на списъка с пакети
