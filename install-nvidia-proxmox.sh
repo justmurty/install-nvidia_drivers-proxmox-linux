@@ -2,9 +2,10 @@
 
 # Скрипт за инсталиране на NVIDIA драйвери и зависимостите им на Proxmox с Debian 12
 
-# Функция за потвърждение на действие
+# Функция за потвърждение на действие с избор по подразбиране Y
 confirm() {
-    read -p "$1 (Y/N): " choice
+    read -p "$1 (Y/n): " choice
+    choice=${choice:-Y}
     case "$choice" in 
         [Yy]* ) return 0 ;;
         [Nn]* ) return 1 ;;
