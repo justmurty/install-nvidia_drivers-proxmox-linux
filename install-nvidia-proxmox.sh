@@ -2,28 +2,58 @@
 
 # Скрипт за инсталиране на NVIDIA драйвери и зависимостите им на Proxmox с Debian 12
 
+# Функция за потвърждение на действие
+confirm() {
+    read -p "$1 (Y/N): " choice
+    case "$choice" in 
+        [Yy]* ) return 0 ;;
+        [Nn]* ) return 1 ;;
+        * ) echo "Моля, въведете Y или N." && confirm "$1" ;;
+    esac
+}
+
 # Добавяне на Proxmox no-subscription repository
-echo "Adding Proxmox no-subscription repository..."
-echo "deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription" > /etc/apt/sources.list.d/pve-enterprise.list
+if confirm "Добавяне на Proxmox no-subscription repository?"; then
+    echo "Adding Proxmox no-subscription repository..."
+    echo "deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription" > /etc/apt/sources.list.d/pve-enterprise.list
+else
+    echo "Пропускане на добавянето на Proxmox no-subscription repository."
+fi
 
 # Добавяне на Debian репозиторита
-echo "Configuring Debian repositories..."
-cat <<EOF > /etc/apt/sources.list
+if confirm "Добавяне на Debian репозиторита?"; then
+    echo "Configuring Debian repositories..."
+    cat <<EOF > /etc/apt/sources.list
 deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
 deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
 deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
 EOF
+else
+    echo "Пропускане на конфигурацията на Debian репозиторита."
+fi
 
 # Актуализиране на списъка с пакети
-echo "Updating package lists..."
-apt update
+if confirm "Актуализиране на списъка с пакети?"; then
+    echo "Updating package lists..."
+    apt update
+else
+    echo "Пропускане на актуализацията на списъка с пакети."
+fi
 
 # Инсталиране на необходимите пакети
-echo "Installing NVIDIA drivers, dkms, and Proxmox headers..."
-apt install -y nvidia-detect nvidia-driver dkms pve-headers
+if confirm "Инсталиране на NVIDIA драйвери, dkms и Proxmox headers?"; then
+    echo "Installing NVIDIA drivers, dkms, and Proxmox headers..."
+    apt install -y nvidia-detect nvidia-driver dkms pve-headers
+else
+    echo "Пропускане на инсталацията на NVIDIA драйвери и зависимости."
+fi
 
 # Проверка на състоянието на NVIDIA драйвера
-echo "Checking NVIDIA driver status with nvidia-smi..."
-nvidia-smi
+if confirm "Проверка на състоянието на NVIDIA драйвера с nvidia-smi?"; then
+    echo "Checking NVIDIA driver status with nvidia-smi..."
+    nvidia-smi
+else
+    echo "Пропускане на проверката на NVIDIA драйвера."
+fi
 
-echo "Installation complete. If you encounter any errors, please check the output above."
+echo "Инсталацията завършена. Ако има грешки, проверете съобщенията по-горе."
