@@ -8,10 +8,10 @@
 
 ### Какво прави
 
-- Добавя Proxmox no-subscription хранилище към системата.
+- Добавя Proxmox no-subscription хранилище към системата и инсталира `pve-headers`
 - Конфигурира Debian хранилищата с `main`, `contrib`, `non-free` и `non-free-firmware`.
 - Актуализира списъка с пакети.
-- Инсталира `nvidia-detect`, `nvidia-driver`, `dkms` и `pve-headers`.
+- Инсталира `nvidia-detect`, `nvidia-driver`, `dkms` и `linux-headers`.
 - Проверява инсталацията на NVIDIA драйвера с помощта на `nvidia-smi`.
 
 ### Как да използвате
