@@ -48,6 +48,7 @@ fi
 if confirm "Инсталиране на NVIDIA драйвери, dkms и linux headers?"; then
     echo "Installing NVIDIA drivers, dkms, and Proxmox headers..."
     apt install -y nvidia-detect nvidia-driver dkms build-essential
+    dkms autoinstall
 else
     echo "Пропускане на инсталацията на NVIDIA драйвери и зависимости."
 fi
